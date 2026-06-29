@@ -27,13 +27,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     if (saved) {
       setTheme(saved);
       document.documentElement.classList.toggle("dark", saved === "dark");
-    } else {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)",
-      ).matches;
-      setTheme(prefersDark ? "dark" : "light");
-      document.documentElement.classList.toggle("dark", prefersDark);
     }
+    // 没有保存值时保持默认 dark（不跟随系统偏好）
   }, []);
 
   useEffect(() => {

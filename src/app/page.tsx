@@ -1,16 +1,23 @@
-import ProjectGraph from "./components/ProjectGraph";
-import StarfieldBackground from "./components/StarfieldBackground";
+"use client";
+
 import HeroSection from "./components/HeroSection";
+import ProjectGraph from "./components/ProjectGraph";
+import ProjectList from "./components/ProjectList";
+import StarfieldBackground from "./components/StarfieldBackground";
+import { useTheme } from "./components/ThemeProvider";
 
 export default function Home() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   return (
     <div className="relative flex h-screen flex-col overflow-hidden">
-      <div className="relative shrink-0 pb-6">
+      <div className="relative shrink-0">
         <StarfieldBackground />
         <HeroSection />
       </div>
 
-      <ProjectGraph />
+      {isDark ? <ProjectGraph /> : <ProjectList />}
 
       <footer className="relative z-10 shrink-0 py-1.5 text-center">
         <a

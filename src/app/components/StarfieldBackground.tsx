@@ -10,19 +10,16 @@ async function initEngine(engine: Engine) {
   await loadSlim(engine);
 }
 
-export default function StarfieldBackground() {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
-
+function DarkParticles() {
   const options = useMemo(
     () => ({
       fullScreen: { enable: false },
       particles: {
-        number: { value: isDark ? 140 : 110 },
-        color: { value: isDark ? "#00f0ff" : "#0066ff" },
+        number: { value: 140 },
+        color: { value: "#00f0ff" },
         shape: { type: "circle" as const },
         opacity: {
-          value: { min: isDark ? 0.2 : 0.35, max: isDark ? 0.6 : 0.9 },
+          value: { min: 0.2, max: 0.6 },
         },
         size: { value: { min: 0.6, max: 2.0 } },
         move: {
@@ -36,9 +33,9 @@ export default function StarfieldBackground() {
         links: {
           enable: true,
           distance: 80,
-          color: isDark ? "#00f0ff" : "#0066ff",
-          opacity: isDark ? 0.12 : 0.22,
-          width: isDark ? 0.5 : 1,
+          color: "#00f0ff",
+          opacity: 0.12,
+          width: 0.5,
         },
       },
       interactivity: {
@@ -59,7 +56,7 @@ export default function StarfieldBackground() {
       },
       detectRetina: true,
     }),
-    [isDark],
+    [],
   );
 
   return (
@@ -67,9 +64,16 @@ export default function StarfieldBackground() {
       <Particles
         id="tsparticles"
         className="absolute inset-0 z-0"
-        style={{ opacity: isDark ? 0.55 : 0.75 }}
+        style={{ opacity: 0.55 }}
         options={options}
       />
     </ParticlesProvider>
   );
+}
+
+export default function StarfieldBackground() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
+  return isDark ? <DarkParticles /> : null;
 }

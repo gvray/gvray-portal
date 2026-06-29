@@ -134,10 +134,7 @@ export default function ProjectGraph() {
 
     projects.forEach((project, i) => {
       const color = colorMap[project.category];
-      const radius = Math.max(
-        0.14,
-        Math.min(0.28, (project.stars || 10) / 285 + 0.14),
-      );
+      const radius = 0.22;
 
       const mesh = new THREE.Mesh(
         new THREE.SphereGeometry(radius, 32, 32),
