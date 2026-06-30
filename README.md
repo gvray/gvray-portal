@@ -2,7 +2,7 @@
 
 > GVRay 技术探索空间 — 开源项目 3D 星云导航门户
 
-[http://gvray.com](http://gvray.com)
+[gvray.com](https://gvray.com)
 
 ## 技术栈
 
