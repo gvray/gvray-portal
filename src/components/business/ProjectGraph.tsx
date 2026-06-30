@@ -350,6 +350,12 @@ export default function ProjectGraph() {
   }, [isDark]);
 
   return (
-    <div ref={containerRef} className="project-graph relative flex-1 min-h-[420px]" style={{ cursor: "grab" }} />
+    <div
+      ref={containerRef}
+      className="project-graph relative min-h-[420px] flex-1"
+      style={{ cursor: "grab" }}
+    >
+      <div className="absolute top-0 right-0 z-10 h-full w-6 cursor-default" />
+    </div>
   );
 }

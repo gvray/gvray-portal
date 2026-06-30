@@ -11,7 +11,7 @@ export default function Home() {
   const isDark = theme === "dark";
 
   return (
-    <div className="home-page relative flex h-screen flex-col overflow-hidden">
+    <div className="home-page relative flex min-h-screen flex-col overflow-x-hidden">
       <div className="relative shrink-0">
         <StarfieldBackground />
         <HeroSection />
