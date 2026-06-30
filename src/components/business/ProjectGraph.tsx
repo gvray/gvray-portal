@@ -2,10 +2,11 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { Timer } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { useTheme } from "./ThemeProvider";
-import { projects, buildLinks, categoryColors, categoryColorsLight } from "../lib/projects";
-import type { Project } from "../lib/projects";
+import { useTheme } from "@/providers/ThemeProvider";
+import { projects, buildLinks, categoryColors, categoryColorsLight } from "@/lib/projects";
+import type { Project } from "@/lib/projects";
 
 
 function createTextSprite(text: string, color: string, isDark: boolean): THREE.Sprite {
@@ -298,11 +299,12 @@ export default function ProjectGraph() {
 
     // === ANIMATION ===
     let frame: number;
-    const clock = new THREE.Clock();
+    const timer = new Timer();
 
     const animate = () => {
       frame = requestAnimationFrame(animate);
-      const t = clock.getElapsedTime();
+      timer.update();
+      const t = timer.getElapsed();
 
       particles.rotation.y += 0.0003;
       dust.rotation.y -= 0.0002;
@@ -348,6 +350,6 @@ export default function ProjectGraph() {
   }, [isDark]);
 
   return (
-    <div ref={containerRef} className="relative flex-1 min-h-[420px]" style={{ cursor: "grab" }} />
+    <div ref={containerRef} className="project-graph relative flex-1 min-h-[420px]" style={{ cursor: "grab" }} />
   );
 }

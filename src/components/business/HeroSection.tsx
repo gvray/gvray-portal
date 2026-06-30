@@ -95,7 +95,7 @@ export default function HeroSection() {
           : "";
 
   return (
-    <section className="relative z-10 shrink-0 pt-32 pb-8 text-center">
+    <section className="hero-section relative z-10 shrink-0 pt-32 pb-8 text-center">
       <h1
         className={`text-5xl font-bold tracking-tight text-text-primary sm:text-6xl lg:text-7xl ${titleClass}`}
         style={{ transformStyle: "preserve-3d", backfaceVisibility: "hidden" }}

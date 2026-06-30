@@ -1,17 +1,17 @@
 "use client";
 
-import HeroSection from "./components/HeroSection";
-import ProjectGraph from "./components/ProjectGraph";
-import ProjectList from "./components/ProjectList";
-import StarfieldBackground from "./components/StarfieldBackground";
-import { useTheme } from "./components/ThemeProvider";
+import HeroSection from "@/components/business/HeroSection";
+import ProjectGraph from "@/components/business/ProjectGraph";
+import ProjectList from "@/components/business/ProjectList";
+import StarfieldBackground from "@/components/business/StarfieldBackground";
+import { useTheme } from "@/providers/ThemeProvider";
 
 export default function Home() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
   return (
-    <div className="relative flex h-screen flex-col overflow-hidden">
+    <div className="home-page relative flex h-screen flex-col overflow-hidden">
       <div className="relative shrink-0">
         <StarfieldBackground />
         <HeroSection />

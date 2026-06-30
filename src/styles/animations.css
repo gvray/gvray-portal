@@ -1,0 +1,133 @@
+/* ============================================================
+   Animations Layer
+   @keyframes + .animate-* utilities
+   ============================================================ */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--accent);
+  }
+}
+
+@keyframes titleFlipIn {
+  0% {
+    opacity: 0;
+    transform: perspective(800px) rotateY(-100deg);
+  }
+  40% {
+    opacity: 1;
+    transform: perspective(800px) rotateY(20deg);
+  }
+  60% {
+    transform: perspective(800px) rotateY(-10deg);
+  }
+  80% {
+    transform: perspective(800px) rotateY(4deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(800px) rotateY(0deg);
+  }
+}
+
+@keyframes titleFlip360 {
+  0% {
+    transform: perspective(800px) rotateY(0deg);
+  }
+  40% {
+    transform: perspective(800px) rotateY(400deg);
+  }
+  60% {
+    transform: perspective(800px) rotateY(340deg);
+  }
+  80% {
+    transform: perspective(800px) rotateY(370deg);
+  }
+  100% {
+    transform: perspective(800px) rotateY(360deg);
+  }
+}
+
+@keyframes titleBounce {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.06) translateY(-3px);
+  }
+  55% {
+    transform: scale(0.96) translateY(1px);
+  }
+  75% {
+    transform: scale(1.03) translateY(-1px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes cursorBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-title-flip-in {
+  animation: titleFlipIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.animate-title-flip-360 {
+  animation: titleFlip360 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.animate-title-bounce {
+  animation: titleBounce 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.animate-cursor-blink {
+  animation: cursorBlink 0.8s step-end infinite;
+}

@@ -1,7 +1,9 @@
 "use client";
 
-import { useTheme } from "./ThemeProvider";
-import { projects, categoryColors, categoryColorsLight } from "../lib/projects";
+import { useTheme } from "@/providers/ThemeProvider";
+import { projects, categoryColors, categoryColorsLight } from "@/lib/projects";
+import Card from "@/components/ui/Card";
+import Badge from "@/components/ui/Badge";
 
 const categoryLabels: Record<string, string> = {
   frontend: "前端",
@@ -17,35 +19,31 @@ export default function ProjectList() {
   const colors = isDark ? categoryColors : categoryColorsLight;
 
   return (
-    <div className="relative z-10 flex-1 overflow-y-auto px-4 py-6">
+    <div className="project-list relative z-10 flex-1 overflow-y-auto px-4 py-6">
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
-          <a
+          <Card
             key={project.id}
+            as="a"
+            interactive
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex flex-col rounded-2xl border border-border/50 bg-bg-card/60 p-5 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-accent/30 hover:bg-bg-card/80 hover:shadow-lg"
+            className="group"
           >
             <div className="flex items-start justify-between">
               <h3 className="text-base font-semibold text-text-primary group-hover:text-accent transition-colors">
                 {project.name}
               </h3>
-              <span
-                className="rounded-full px-2.5 py-0.5 text-[10px] font-medium"
-                style={{
-                  backgroundColor: `${colors[project.category]}15`,
-                  color: colors[project.category],
-                }}
-              >
+              <Badge color={colors[project.category]}>
                 {categoryLabels[project.category]}
-              </span>
+              </Badge>
             </div>
 
             <p className="mt-2 text-sm leading-relaxed text-text-secondary line-clamp-2">
               {project.description}
             </p>
-          </a>
+          </Card>
         ))}
       </div>
     </div>

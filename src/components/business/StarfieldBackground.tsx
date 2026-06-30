@@ -4,7 +4,7 @@ import type { Engine } from "@tsparticles/engine";
 import Particles, { ParticlesProvider } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import { useMemo } from "react";
-import { useTheme } from "./ThemeProvider";
+import { useTheme } from "@/providers/ThemeProvider";
 
 async function initEngine(engine: Engine) {
   await loadSlim(engine);
@@ -63,7 +63,7 @@ function DarkParticles() {
     <ParticlesProvider init={initEngine}>
       <Particles
         id="tsparticles"
-        className="absolute inset-0 z-0"
+        className="starfield-bg absolute inset-0 z-0"
         style={{ opacity: 0.55 }}
         options={options}
       />

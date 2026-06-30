@@ -1,18 +1,18 @@
 "use client";
 
 import { Sun, Moon } from "lucide-react";
-import { useTheme } from "./ThemeProvider";
+import { useTheme } from "@/providers/ThemeProvider";
+import IconButton from "@/components/ui/IconButton";
 
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <button
+    <IconButton
       onClick={toggleTheme}
-      className="relative flex h-10 w-10 items-center justify-center rounded-full border border-border bg-bg-card/50 text-text-primary transition-all duration-300 hover:border-accent hover:text-accent hover:shadow-[0_0_15px_var(--accent-glow)]"
-      aria-label={
-        theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
-      }
+      srLabel={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+      glow
+      className="theme-toggle text-text-primary duration-300"
     >
       <Sun
         className={`absolute h-5 w-5 transition-all duration-500 ${
@@ -28,6 +28,6 @@ export default function ThemeToggle() {
             : "-rotate-90 scale-0 opacity-0"
         }`}
       />
-    </button>
+    </IconButton>
   );
 }
