@@ -17,7 +17,7 @@ const workLinks = [
   },
   {
     label: "Admin RBAC",
-    href: "https://admin.gvray.com/",
+    href: "https://react.gvray.com/",
     target: "_blank",
     rel: "noopener noreferrer",
   },

@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 export interface DropdownMenuItem {
   label: string;
   href: string;
@@ -13,12 +15,27 @@ interface DropdownMenuProps {
 }
 
 export default function DropdownMenu({ label, items }: DropdownMenuProps) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handle = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handle);
+    return () => document.removeEventListener("mousedown", handle);
+  }, []);
+
   return (
-    <div className="group relative">
+    <div ref={ref} className="group relative">
       <button
         type="button"
+        onClick={() => setOpen((v) => !v)}
         className="flex h-10 items-center gap-1 rounded-full border border-border bg-bg-card/50 px-4 text-sm font-medium text-text-secondary transition-all hover:border-accent hover:text-accent"
         aria-haspopup="true"
+        aria-expanded={open}
       >
         {label}
         <svg
@@ -36,7 +53,13 @@ export default function DropdownMenu({ label, items }: DropdownMenuProps) {
           />
         </svg>
       </button>
-      <div className="invisible absolute right-0 top-full min-w-40 pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+      <div
+        className={`absolute right-0 top-full min-w-40 pt-2 transition-all ${
+          open
+            ? "visible opacity-100"
+            : "invisible opacity-0 group-hover:visible group-hover:opacity-100"
+        }`}
+      >
         <div className="overflow-hidden rounded-2xl border border-border bg-bg-card/90 p-1 shadow-[0_10px_30px_rgba(0,0,0,0.15)] backdrop-blur-xl">
           {items.map((item) => (
             <a
@@ -44,6 +67,7 @@ export default function DropdownMenu({ label, items }: DropdownMenuProps) {
               href={item.href}
               target={item.target}
               rel={item.rel}
+              onClick={() => setOpen(false)}
               className="flex items-center justify-between gap-3 rounded-xl px-3 py-2 text-sm text-text-secondary transition-colors hover:bg-bg-secondary hover:text-accent"
             >
               {item.label}
